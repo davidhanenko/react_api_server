@@ -1,34 +1,38 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import Character from './components/character.component';
 
-import logo from './logo.svg';
 import './App.css';
 
-const charactersApiData = require('./mock-data/characters-all.json');
-
-
 function App() {
-  const name = 'Alfred E. Newman';
-  const characters = charactersApiData.results;
+  const [characters, setCharacters] = useState([]);
+ 
+
+  useEffect(()=> {
+    axios.get("http://localhost:5000/")
+    .then(res=> {
+      const charactersApiData = res.data;
+      setCharacters(charactersApiData.results);
+    })
+    .catch(err=> {
+      console.log(err)
+    })
+  })
+
+  if(!characters) return <h3>Loading...</h3>
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello There {name}</h1>
-        {
-          characters.map(
-            character => (<Character name={character.name} age={22}/>)
-          )
-        }
-        <Character age={22}/>
-
+    <div className='App'>
+      <header className='App-header'>
+        {/* <h1>Hello There {name}</h1> */}
+        {characters.map((character, i) => (
+          <Character key={i} character={character} />
+        ))}
       </header>
-      <div id="container">
-
-      </div>
+      <div id='container'></div>
     </div>
   );
 }
 
 export default App;
-;
