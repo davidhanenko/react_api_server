@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 
 
-const data = require('../src/mock-data/characters-all.json');
+const data = require('./mock-data/characters-all.json');
 
 app.get('/', cors(), (req, res)=> {
   res.json(data);

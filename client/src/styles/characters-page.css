@@ -1,0 +1,21 @@
+
+#main-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.character {
+  flex: 1 1 250px;
+  height: 200px;
+  margin: 1rem;
+  padding: 3rem;
+  text-align: center;
+  justify-content: center;
+  background-color: #282c341a;
+}
+
+.name {
+  font-size: 2rem;
+  color: rgb(228, 89, 8);
+}
